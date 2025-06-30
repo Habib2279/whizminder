@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - WHIZMINDER</title>
+    <meta name="description" content="Get in touch with WHIZMINDER. We're here to help you transform your business with innovative IT solutions.">
+
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #2B174F 0%, #00BCD4 100%);
+        color: #F1F5F9;
+        font-family: 'Poppins', sans-serif;
+      }
+      .form-control, textarea {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid #00BCD4;
+        color: #fff;
+      }
+      .form-control::placeholder {
+        color: #ddd;
+      }
+      .btn-primary {
+        background-color: #00BCD4;
+        border: none;
+        font-weight: 600;
+      }
+      .btn-primary:hover {
+        background-color: #00aab8;
+      }
+      .btn-outline-info {
+        border-color: #00BCD4;
+        color: #00BCD4;
+      }
+      .btn-outline-info:hover {
+        background-color: #00BCD4;
+        color: #fff;
+      }
+      .navbar {
+        background-color: #1A0F33;
+      }
+      .nav-link {
+        color: #F1F5F9 !important;
+      }
+      .nav-link.active,
+      .nav-link:hover {
+        color: #00BCD4 !important;
+        font-weight: 600;
+      }
+      footer {
+        background-color: #1A0F33;
+        color: #ccc;
+      }
+      .social-card {
+        background-color: #1A0F33;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      }
+      .social-card i {
+        transition: transform 0.2s ease;
+      }
+      .social-card i:hover {
+        transform: scale(1.2);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-white" href="index.html">
+          <img src="assets/logo.jpeg" alt="Company Logo" style="height:40px; width:auto; margin-right:10px;" />
+          WHIZMINDER
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container py-5">
+      <h1 class="fw-bold mb-5 text-center text-white">Contact Us</h1>
+      <div class="row g-5">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <!-- Contact Form -->
+          <form action="https://formspree.io/f/yourFormID" method="POST">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+
+          <!-- Contact Info -->
+          <div class="mt-5 contact-info">
+            <h5 class="text-white mb-3">Contact Info</h5>
+            <p><i class="bi bi-telephone me-2"></i>+880 1718-520275</p>
+            <p><i class="bi bi-envelope me-2"></i>info@whizminder.com</p>
+            <div class="row">
+              <div class="col-12 col-lg-6 mb-3">
+                <h6 class="text-white">Operational Office</h6>
+                <p><i class="bi bi-geo-alt me-2"></i>Flat: 1A, House: 7, Road 9/B,<br>Metro Housing, Boshila, Mohammadpur, Dhaka</p>
+              </div>
+              <div class="col-12 col-lg-6 mb-3">
+                <h6 class="text-white">Head Office</h6>
+                <p><i class="bi bi-geo-alt me-2"></i>Flat# B7, House#287, Road# 8/A,<br>Dhanmondi, Dhaka-1209</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-6 d-flex flex-column justify-content-between">
+          <!-- Map -->
+          <div class="mb-4">
+            <div class="mb-3 d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-info btn-sm" onclick="changeMap('operational')">Operational Office</button>
+              <button class="btn btn-outline-info btn-sm" onclick="changeMap('head')">Head Office</button>
+            </div>
+            <div class="ratio ratio-16x9 rounded-3 shadow">
+              <iframe id="mapFrame" src="https://www.google.com/maps?q=Flat: 1A, House: 7, Road 9/B, Metro Housing, Boshila, Mohammadpur, Dhaka&output=embed" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+
+          <!-- Social Media Card -->
+          <div class="social-card mt-auto">
+            <h6 class="text-white mb-3">Follow Us</h6>
+            <a href="#" class="text-info me-3"><i class="bi bi-facebook fs-4"></i></a>
+            <a href="#" class="text-info me-3"><i class="bi bi-twitter fs-4"></i></a>
+            <a href="#" class="text-info me-3"><i class="bi bi-linkedin fs-4"></i></a>
+            <a href="#" class="text-info"><i class="bi bi-instagram fs-4"></i></a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-5 border-top">
+      <div class="container text-center">
+        <small>Wisdom in Motion<br>&copy; 2024 WHIZMINDER. All rights reserved.</small>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function changeMap(location) {
+        const mapFrame = document.getElementById('mapFrame');
+        if (location === 'operational') {
+          mapFrame.src = "https://www.google.com/maps?q=Flat: 1A, House: 7, Road 9/B, Metro Housing, Boshila, Mohammadpur, Dhaka&output=embed";
+        } else if (location === 'head') {
+          mapFrame.src = "https://www.google.com/maps?q=Flat%23+B7,+House%23287,+Road%23+8%2FA,+Dhanmondi,+Dhaka-1209&output=embed";
+        }
+      }
+    </script>
+  </body>
+</html>
