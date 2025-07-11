@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - WHIZMINDER</title>
-
-  <!-- SEO Meta -->
-  <meta name="description" content="Learn about WHIZMINDER - our mission, vision, and the team behind world-class IT solutions in cybersecurity and technology consulting.">
+  <title>WHIZMINDER - ISO 27001 ISMS Audit Service</title>
+  <meta name="description" content="WHIZMINDER provides comprehensive ISO 27001 ISMS audit services to ensure your information security management system meets international standards.">
 
   <!-- Bootstrap & Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,8 +14,8 @@
   <!-- Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-  <!-- Custom Styles -->
   <style>
+    /* Combined CSS from style.css */
     :root {
       --primary-color: #1e0a3c;
       --secondary-color: #0a2472;
@@ -118,9 +116,6 @@
       overflow-y: auto;
       overscroll-behavior: contain;
     }
-    .mobile-nav.active {
-      right: 0;
-    }
     .mobile-nav .dropdown-toggle {
       display: flex;
       justify-content: space-between;
@@ -129,6 +124,9 @@
     .mobile-nav .dropdown-toggle .bi {
       transition: transform 0.3s ease;
       font-size: 0.8rem;
+    }
+    .mobile-nav.active {
+      right: 0;
     }
     .mobile-nav-list {
       list-style: none;
@@ -263,133 +261,79 @@
       background-position: bottom;
     }
     
-    /* About Page Specific Styles */
-    .about-hero {
+    /* Service Page Specific Styles */
+    .service-hero {
       min-height: 60vh;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(rgba(30, 10, 60, 0.8), rgba(10, 36, 114, 0.8)), url('assets/about-bg.jpg') center/cover no-repeat;
+      padding-top: 100px;
     }
-    
-    .mission-card, .vision-card {
-      background: var(--card-bg);
+    .service-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(255,202,128,0.1) 0%, transparent 50%);
+      animation: pulse 15s infinite alternate;
+    }
+    .service-icon-lg {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+    .service-content {
+      background: rgba(46, 51, 81, 0.7);
       border-radius: 15px;
       padding: 30px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      transition: all 0.4s ease;
-      height: 100%;
     }
-    
-    .mission-card:hover, .vision-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    }
-    
-    .team-card {
-      background: var(--card-bg);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-      transition: all 0.4s ease;
-    }
-    
-    .team-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-    
-    .team-img {
-      height: 250px;
-      object-fit: cover;
-      width: 100%;
-    }
-    
-    .timeline {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 6px;
-      background-color: var(--accent-color);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -3px;
+    .faq-item {
+      margin-bottom: 15px;
       border-radius: 10px;
+      overflow: hidden;
     }
-    
-    .timeline-container {
-      padding: 10px 40px;
-      position: relative;
-      background-color: inherit;
-      width: 50%;
-    }
-    
-    .timeline-container::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      right: -17px;
-      background-color: var(--accent-color);
-      border: 4px solid var(--primary-color);
-      top: 15px;
-      border-radius: 50%;
-      z-index: 1;
-    }
-    
-    .left {
-      left: 0;
-    }
-    
-    .right {
-      left: 50%;
-    }
-    
-    .left::before {
-      content: " ";
-      height: 0;
-      position: absolute;
-      top: 22px;
-      width: 0;
-      z-index: 1;
-      right: 30px;
-      border: medium solid var(--card-bg);
-      border-width: 10px 0 10px 10px;
-      border-color: transparent transparent transparent var(--card-bg);
-    }
-    
-    .right::before {
-      content: " ";
-      height: 0;
-      position: absolute;
-      top: 22px;
-      width: 0;
-      z-index: 1;
-      left: 30px;
-      border: medium solid var(--card-bg);
-      border-width: 10px 10px 10px 0;
-      border-color: transparent var(--card-bg) transparent transparent;
-    }
-    
-    .right::after {
-      left: -16px;
-    }
-    
-    .timeline-content {
-      padding: 20px 30px;
+    .faq-header {
       background-color: var(--card-bg);
-      position: relative;
-      border-radius: 6px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    
+    .faq-header:hover {
+      background-color: rgba(255, 202, 128, 0.1);
+    }
+    .faq-header h5 {
+      margin: 0;
+      font-weight: 600;
+    }
+    .faq-body {
+      background-color: rgba(46, 51, 81, 0.5);
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-body.show {
+      padding: 20px;
+      max-height: 500px;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    .benefit-icon {
+      color: var(--accent-color);
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+
     /* Animations */
     @keyframes pulse {
       0% { transform: scale(1); opacity: 0.5; }
@@ -447,32 +391,48 @@
       0% { transform: translate(-50%, 0); opacity: 1; }
       100% { transform: translate(-50%, 20px); opacity: 0; }
     }
-    
-    @media screen and (max-width: 768px) {
-      .timeline::after {
-        left: 31px;
-      }
-      
-      .timeline-container {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-      }
-      
-      .timeline-container::before {
-        left: 60px;
-        border: medium solid var(--card-bg);
-        border-width: 10px 10px 10px 0;
-        border-color: transparent var(--card-bg) transparent transparent;
-      }
-      
-      .left::after, .right::after {
-        left: 15px;
-      }
-      
-      .right {
-        left: 0%;
-      }
+
+    /* Timeline Styles */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 20px;
+    }
+    .timeline-number {
+      position: absolute;
+      left: -30px;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .timeline-content {
+      padding: 15px;
+      background: rgba(46, 51, 81, 0.5);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+    .timeline-content h6 {
+      color: var(--accent-color);
+    }
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: -18px;
+      top: 24px;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent-color);
     }
 
     .mobile-nav .dropdown-menu {
@@ -507,7 +467,9 @@
 <body>
   <!-- Logo -->
   <div class="logo-container animate__animated animate__fadeInDown">
-    <img src="assets/logo3.png" alt="WHIZMINDER Logo" class="animate__animated animate__fadeIn">
+    <a href="index.html">
+      <img src="assets/logo3.png" alt="WHIZMINDER Logo" class="animate__animated animate__fadeIn">
+    </a>
   </div>
 
   <!-- Hamburger Menu -->
@@ -523,15 +485,15 @@
   <div class="mobile-nav" id="mobileNav">
     <ul class="mobile-nav-list">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="about.html">About</a></li>
       <li class="has-dropdown">
         <a href="javascript:void(0)" class="dropdown-toggle">Services</a>
         <ul class="dropdown-menu">
           <li><a href="iso27001.html">ISO 27001</a></li>
           <li><a href="isaudit.html">Information System Audit</a></li>
           <li><a href="iso9000.html">ISO 9000</a></li>
-          <li><a href="soc.html">SOC</a></li>
           <li><a href="vapt.html">VAPT</a></li>
+          <li><a href="soc.html">SOC</a></li>
           <li><a href="forensic.html">Forensic</a></li>
         </ul>
       </li>
@@ -545,252 +507,208 @@
   <!-- Scroll Indicator -->
   <div class="scroll-indicator"></div>
 
-  <!-- About Hero Section -->
-  <header class="about-hero py-5">
-    <div class="container py-5">
+  <!-- ISO 27001 Hero Section -->
+  <header class="service-hero py-6 position-relative overflow-hidden">
+    <!-- Video Background -->
+    <div class="video-background position-absolute top-0 start-0 w-100 h-100">
+        <video autoplay muted loop playsinline class="w-100 h-100 object-fit-cover">
+            <source src="assets/vedio/iso27001back.mp4" type="video/mp4">
+            <!-- Fallback image if video doesn't load -->
+            <img src="assets/images/iso-audit-fallback.jpg" alt="ISO Audit Background" class="w-100 h-100 object-fit-cover">
+        </video>
+        <!-- Semi-transparent overlay -->
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(30, 10, 60, 0.6);"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container py-4 position-relative z-index-1">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 animate__animated animate__fadeInLeft">
+                <div class="service-icon-lg">
+                    <i class="" style="color: var(--accent-color); font-size: 3rem;"></i>
+                </div>
+                <h1 class="display-5 fw-bold text-white">ISO 27001 ISMS Audit</h1>
+                <p class="lead text-white">Ensure your Information Security Management System meets international standards with our comprehensive audit services.</p>
+                <a href="contact.html" class="btn btn-light btn-lg fw-bold mt-3 animate__animated animate__pulse animate__infinite animate__slower">Schedule Audit</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+    .service-hero {
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .video-background {
+        z-index: 0;
+    }
+    
+    .z-index-1 {
+        z-index: 1;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .service-hero {
+            min-height: 50vh;
+            text-align: center;
+        }
+        
+        .service-hero .col-lg-6 {
+            margin: 0 auto;
+        }
+    }
+</style>
+
+  <!-- Service Details Section -->
+  <section class="py-5" id="service-details">
+    <div class="container">
       <div class="row">
-        <div class="col-lg-8 mx-auto text-center animate__animated animate__fadeIn">
-          <h1 class="display-4 fw-bold mb-4">About WHIZMINDER</h1>
-          <p class="lead fs-4">Wisdom in Motion - Delivering excellence through innovative technology solutions</p>
+        <div class="col-lg-8 mb-4">
+          <div class="service-content animate__animated animate__fadeIn">
+            <h2 class="fw-bold mb-4">Comprehensive ISO 27001 ISMS Audit</h2>
+            <p>Our ISO 27001 ISMS audit service provides a thorough examination of your Information Security Management System to ensure compliance with the international standard. We evaluate all 114 controls across 14 clauses to identify gaps and provide actionable recommendations.</p>
+            
+            <h4 class="mt-5 mb-3">Audit Scope</h4>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="benefit-item">
+                  <div class="benefit-icon"><i class="bi bi-check-circle-fill"></i></div>
+                  <div>
+                    <h6>Security Policies</h6>
+                    <p class="small">Review of information security policies and procedures</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="benefit-item">
+                  <div class="benefit-icon"><i class="bi bi-check-circle-fill"></i></div>
+                  <div>
+                    <h6>Risk Assessment</h6>
+                    <p class="small">Evaluation of risk treatment plans and methodologies</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="benefit-item">
+                  <div class="benefit-icon"><i class="bi bi-check-circle-fill"></i></div>
+                  <div>
+                    <h6>Access Control</h6>
+                    <p class="small">Assessment of user access management systems</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="benefit-item">
+                  <div class="benefit-icon"><i class="bi bi-check-circle-fill"></i></div>
+                  <div>
+                    <h6>Incident Management</h6>
+                    <p class="small">Review of security incident response procedures</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <h4 class="mt-5 mb-3">Our Audit Methodology</h4>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                  <h6>Documentation Review</h6>
+                  <p>Examine ISMS policies, procedures, risk assessments, and treatment plans.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                  <h6>Interviews</h6>
+                  <p>Conduct interviews with key personnel across departments.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                  <h6>Technical Testing</h6>
+                  <p>Perform technical controls testing and verification.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content">
+                  <h6>Gap Analysis</h6>
+                  <p>Identify gaps against ISO 27001:2022 requirements.</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-number">5</div>
+                <div class="timeline-content">
+                  <h6>Reporting</h6>
+                  <p>Deliver detailed audit report with remediation roadmap.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Our Story Section -->
-  <section class="py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-12 animate__animated animate__fadeInLeft">
-          <h2 class="fw-bold mb-4 text-center">Our Story</h2>
-          <p class="lead">Founded in 2025, WHIZMINDER began as a vision to bridge the gap between cutting-edge technology and business needs.</p>
-          <p>Whizminder is a trusted consulting partner offering end-to-end advisory, technology solutions, and training services to help organizations build resilient and compliant systems. Our expert-led team specializes in ISO 27001 ISMS audits, web/mobile/API security assessments, infrastructure reviews, and secure software development, supported by tailored training programs to empower your workforce. With a focus on proactive threat management—including vulnerability assessments, dark web analysis, and Red & Blue Team exercises—we deliver holistic solutions to safeguard your business in an evolving digital landscape. Our Blue Team services empower organizations with continuous monitoring, incident response, and security posture hardening to detect and neutralize threats in real-time. Partner with Whizminder to navigate next-generation challenges with confidence and precision.</p>
+        
+        <!-- FAQ Section -->
+        <div class="col-lg-4">
+          <div class="sticky-top" style="top: 20px;">
+            <div class="service-content animate__animated animate__fadeIn">
+              <h3 class="fw-bold mb-4">ISO 27001 FAQ</h3>
+              
+              <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQ(this)">
+                  <h5>Why is ISO 27001 certification important?</h5>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-body">
+                  <p>ISO 27001 certification demonstrates to clients and stakeholders that you take information security seriously. It helps protect sensitive data, reduces risk of breaches, and can be a requirement for doing business with many organizations.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQ(this)">
+                  <h5>How often should we conduct ISMS audits?</h5>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-body">
+                  <p>We recommend internal audits at least annually, with more frequent reviews (quarterly or bi-annually) for high-risk areas. Certification bodies typically conduct surveillance audits every 6-12 months after initial certification.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQ(this)">
+                  <h5>What's the difference between ISO 27001 and SOC 2?</h5>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-body">
+                  <p>ISO 27001 is an international standard with certification, while SOC 2 is a US-based attestation. ISO 27001 has specific requirements, while SOC 2 is principles-based. Many organizations pursue both to satisfy different stakeholder needs.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <div class="faq-header" onclick="toggleFAQ(this)">
+                  <h5>Can you help us prepare for certification?</h5>
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+                <div class="faq-body">
+                  <p>Yes, we offer comprehensive preparation services including gap assessments, documentation development, staff training, and pre-certification mock audits to ensure you're fully prepared for the official certification audit.</p>
+                </div>
+              </div>
+              
+              <div class="text-center mt-4">
+                <a href="contact.html" class="btn btn-outline-light">More Questions? Contact Us</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Mission & Vision Section -->
-  <section class="py-5" style="background: rgba(46, 51, 81, 0.5);">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-md-6 animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-          <div class="mission-card">
-            <div class="text-center mb-4">
-              <i class="bi bi-bullseye display-4 text-warning"></i>
-            </div>
-            <h3 class="text-center fw-bold mb-3">Our Mission</h3>
-            <p class="text-center"> To transform potential into impact by delivering smart solutions in technology and consulting that help businesses stay ahead in the dynamic world.</p>
-          </div>
-        </div>
-        <div class="col-md-6 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-          <div class="vision-card">
-            <div class="text-center mb-4">
-              <i class="bi bi-eye display-4 text-info"></i>
-            </div>
-            <h3 class="text-center fw-bold mb-3">Our Vision</h3>
-            <p class="text-center"> Whizminder envisions a world where every business operates with ironclad security, streamlined compliance, and cutting-edge technology while nurturing the next generation of tech leaders. By combining our expertise in consulting and technology development with research and training, we create an ecosystem where potential flourishes into measurable impact.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- Our Team Section -->
-  <section class="py-5" style="background: rgba(46, 51, 81, 0.5);">
-    <div class="container">
-      <div class="text-center mb-5">
-        <h2 class="fw-bold">Meet Our Leadership</h2>
-        <p class="lead">The experts driving our success</p>
-      </div>
-      <div class="team-container-wrapper">
-        <div class="team-container" id="teamContainer">
-          <!-- Team Member 1 -->
-          <div class="team-member animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
-            <div class="team-card">
-              <img src="assets/p1.jpg" alt="Dr. Maruf Hasan" class="team-img">
-              <div class="p-4">
-                <h5 class="fw-bold mb-1">Dr. Md. Maruf Hassan, CISA</h5>
-                <p class="text-warning mb-2">Managing Partner</p>
-                <p class="small">Cybersecurity expert with 15+ years of experience in enterprise security architecture.</p>
-                <div class="d-flex gap-3 mt-3">
-                  <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
-                  <a href="#" class="text-info"><i class="bi bi-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Team Member 2 -->
-          <div class="team-member animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-            <div class="team-card">
-              <img src="assets/p3.jpg" alt="Prof. Dr. Md. Asraf Ali" class="team-img">
-              <div class="p-4">
-                <h5 class="fw-bold mb-1">Prof. Dr. Md. Asraf Ali</h5>
-                <p class="text-warning mb-2">Founder Partner</p>
-                <p class="small">Technology visionary specializing in cloud architecture and digital transformation.</p>
-                <div class="d-flex gap-3 mt-3">
-                  <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
-                  <a href="#" class="text-info"><i class="bi bi-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Team Member 3 -->
-          <div class="team-member animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-            <div class="team-card">
-              <img src="assets/0.jpg" alt="Saikat Biswas, CISA, ISMS" class="team-img">
-              <div class="p-4">
-                <h5 class="fw-bold mb-1">Saikat Biswas, CISA, ISMS</h5>
-                <p class="text-warning mb-2">Chief Information Officer</p>
-                <p class="small">"Information systems strategist managing enterprise-wide security governance, ISMS implementation, and regulatory compliance across critical infrastructure."</p>
-                <div class="d-flex gap-3 mt-3">
-                  <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
-                  <a href="#" class="text-info"><i class="bi bi-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Team Member 3 -->
-          <div class="team-member animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-            <div class="team-card">
-              <img src="assets/raju.jpg" alt="Raju Talukder" class="team-img">
-              <div class="p-4">
-                <h5 class="fw-bold mb-1">Raju Talukder, OSCP, LA</h5>
-                <p class="text-warning mb-2">Head, Information Security Service</p>
-                <p class="small">"Offensive security director spearheading penetration testing, vulnerability assessments, and red team operations for Fortune 500 clients."</p>
-                <div class="d-flex gap-3 mt-3">
-                  <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
-                  <a href="#" class="text-info"><i class="bi bi-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Team Member 3 -->
-          <div class="team-member animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-            <div class="team-card">
-              <img src="assets/habib.png" alt="Raju Talukder" class="team-img">
-              <div class="p-4">
-                <h5 class="fw-bold mb-1">Md Habibullah, CEH</h5>
-                <p class="text-warning mb-2">Lead, IT Advisory</p>
-                <p class="small">"IT audit specialist advising on governance frameworks, risk mitigation, and compliance standards. Bridges technical security with business objectives."</p>
-                <div class="d-flex gap-3 mt-3">
-                  <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
-                  <a href="#" class="text-info"><i class="bi bi-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="team-member animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
-            <div class="team-card">
-              <img src="assets/rasel.jpeg" alt="Sheikh Rasel" class="team-img">
-              <div class="p-4">
-                <h5 class="fw-bold mb-1">Sheikh Rasel, CEH</h5>
-                <p class="text-warning mb-2">Offensive Security Engineer</p>
-                <p class="small">"Certified ethical hacker executing security assessments, threat simulations, and remediation strategies for enterprise networks and applications."
-
-                </p>
-                <div class="d-flex gap-3 mt-3">
-                  <a href="#" class="text-info"><i class="bi bi-linkedin"></i></a>
-                  <a href="#" class="text-info"><i class="bi bi-twitter"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Additional Team Members (duplicates removed in this example) -->
-        </div>
-      </div>
-      <div class="text-center mt-4">
-        <button class="btn btn-outline-light scroll-btn" onclick="scrollTeam(-1)"><i class="bi bi-chevron-left"></i></button>
-        <button class="btn btn-outline-light scroll-btn ms-2" onclick="scrollTeam(1)"><i class="bi bi-chevron-right"></i></button>
-      </div>
-    </div>
-  </section>
-  
-  <style>
-    /* Team Section Styles */
-    .team-container-wrapper {
-      width: 100%;
-      overflow-x: auto;
-      padding-bottom: 20px;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .team-container {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 20px;
-      padding: 10px 0;
-    }
-    
-    .team-member {
-      flex: 0 0 auto;
-      width: 280px;
-      transition: transform 0.3s ease;
-    }
-    
-    .team-card {
-      background: var(--card-bg);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-      height: 100%;
-    }
-    
-    .team-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-    
-    team-img {
-    width: 100%;
-    height: 180px; /* Reduced from 250px */
-    object-fit: cover;
-    border-bottom: 3px solid var(--accent-color);
-  }
-    
-    .scroll-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    /* Hide scrollbar but keep functionality */
-    .team-container-wrapper::-webkit-scrollbar {
-      display: none;
-    }
-    .team-container-wrapper {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .team-img.ratio-preserved {
-    height: auto;
-    max-height: 180px;
-    width: auto;
-    max-width: 100%;
-  }
-  </style>
-  
-  <script>
-    function scrollTeam(direction) {
-      const container = document.getElementById('teamContainer');
-      const scrollAmount = 300; // Adjust this value as needed
-      container.scrollBy({
-        left: direction * scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  </script>
-
-  
 
   <!-- Footer -->
   <footer class="footer-bg py-4 text-light">
@@ -837,6 +755,7 @@
   <!-- AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
+    // Combined JavaScript
     AOS.init();
     
     // Hamburger Menu Toggle
@@ -857,6 +776,17 @@
       this.classList.remove('active');
       document.body.style.overflow = '';
     });
+    
+    // FAQ Toggle Function
+    function toggleFAQ(header) {
+      const faqItem = header.parentElement;
+      const body = faqItem.querySelector('.faq-body');
+      const icon = header.querySelector('i');
+      
+      body.classList.toggle('show');
+      icon.classList.toggle('bi-chevron-down');
+      icon.classList.toggle('bi-chevron-up');
+    }
     
     // Scroll to top function
     function scrollToTop() {

@@ -12,155 +12,757 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons (Optional, for the chevron icon) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Bootstrap Bundle JS (Includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
   <!-- Custom Styles -->
   <style>
+    :root {
+      --primary-color: #1e0a3c;
+      --secondary-color: #0a2472;
+      --accent-color: #FFCA80;
+      --text-color: #E0E0E0;
+      --card-bg: #2E3351;
+    }
+    
     html {
       scroll-behavior: smooth;
     }
+    
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #3b82f6 0%, #a21caf 100%);
-      color: #212529;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      color: var(--text-color);
+      position: relative;
+      overflow-x: hidden;
     }
+    
+    /* Logo Styles */
+    .logo-container {
+      position: absolute;
+      top: 0px;
+      left: 10px;
+      z-index: 100;
+      animation: fadeInDown 1s ease both;
+    }
+    .logo-container img {
+      width: 150px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .logo-container img:hover {
+      transform: scale(1.05) rotate(-2deg);
+    }
+    
+    /* Hero Section */
     .hero-bg {
-      background: linear-gradient(120deg, #3b82f6 60%, #a21caf 100%);
       color: #fff;
-      min-height: 60vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(255,202,128,0.1) 0%, transparent 50%);
+      animation: pulse 15s infinite alternate;
+    }
+    
+    /* Hamburger Menu */
+    .hamburger-menu {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      z-index: 1000;
+      animation: fadeIn 1s 0.5s both;
+    }
+    .hamburger-btn {
+      background: transparent;
+      color: white !important;
+      border: none;
+      border-radius: 50%; 
+      width: 50px;
+      height: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .hamburger-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      margin: 3px 0;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+    .hamburger-btn.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-btn.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: rgba(30, 10, 60, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 100px 30px 30px;
+      transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 999;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .mobile-nav.active {
+      right: 0;
+    }
+    .mobile-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .mobile-nav-list li {
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateX(20px);
+      transition: all 0.4s ease;
+    }
+    .mobile-nav.active .mobile-nav-list li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .mobile-nav-list li:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-nav-list li:nth-child(2) { transition-delay: 0.2s; }
+    .mobile-nav-list li:nth-child(3) { transition-delay: 0.3s; }
+    .mobile-nav-list li:nth-child(4) { transition-delay: 0.4s; }
+    
+    /* Mobile Navigation Dropdown */
+    .mobile-nav .has-dropdown {
+      position: relative;
+    }
+    .mobile-nav .dropdown-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mobile-nav .dropdown-toggle .bi {
+      transition: transform 0.3s ease;
+      font-size: 0.8rem;
+    }
+    .mobile-nav .dropdown-toggle.active .bi {
+      transform: rotate(180deg);
+    }
+    
+    .mobile-nav .dropdown-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: none;
+      overflow: visible;
+      background: rgba(30, 10, 60, 0.98);
+      border-radius: 8px;
+      margin-top: 5px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      opacity: 1;
+      border: 1px solid rgba(255,202,128,0.2);
+      visibility: hidden;
+      display: none;
+      position: static;
+      transition: none;
+    }
+    .mobile-nav .dropdown-menu.active {
+      visibility: visible;
+      display: block;
+      position: static;
+      opacity: 1;
+      max-height: none;
+      padding: 10px 0;
+      overflow: visible;
+    }
+    .mobile-nav .dropdown-menu li {
+      margin-bottom: 5px;
+      opacity: 1;
+      transform: none;
+      padding: 0 10px;
+    }
+    .mobile-nav .dropdown-menu a {
+      font-size: 1rem;
+      padding: 8px 15px;
+      color: var(--text-color);
+      text-decoration: none;
+      display: block;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+    .mobile-nav .dropdown-menu a:hover {
+      background: rgba(255, 202, 128, 0.1);
+      color: var(--accent-color);
+      transform: translateX(5px);
+    }
+    
+    .mobile-nav-list a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.2rem;
+      display: block;
+      padding: 12px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .mobile-nav-list a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,202,128,0.2), transparent);
+      transition: all 0.5s ease;
+    }
+    .mobile-nav-list a:hover::before {
+      left: 100%;
+    }
+    .mobile-nav-list a:hover, .mobile-nav-list a.active {
+      background: rgba(255, 202, 128, 0.1);
+      color: var(--accent-color);
+      transform: translateX(5px);
+    }
+    
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(5px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s ease;
+    }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Why Cards */
+    .why-card {
+      background-color: var(--card-bg);
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+    .why-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--accent-color), #FF6B6B);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .why-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    .why-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    /* Testimonial Cards */
+    .testimonial-card {
+      background: var(--card-bg);
+      color: var(--text-color);
+      border: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-5px) rotateX(5deg);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Footer */
+    .footer-bg {
+      background-color: var(--primary-color);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,202,128,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-position: bottom;
+    }
+    
+    /* Horizontal scroll styling */
+    .overflow-auto::-webkit-scrollbar {
+      height: 8px;
+    }
+    .overflow-auto::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+    .overflow-auto::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+    .overflow-auto::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* Service card styling */
+    .service-card {
+      transition: all 0.3s ease;
+    }
+    .hover-effect {
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .hover-effect:hover {
+      border-color: rgba(255, 193, 7, 0.75) !important;
+      box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+      transform: scale(1.05);
     }
     .service-icon {
-      font-size: 2.5rem;
-      color: #39225D;
+      transition: transform 0.5s ease;
+      height: 80px;
+      object-fit: contain;
     }
-    .why-icon {
-      font-size: 2rem;
-      color: #FFCA80;
+    .hover-effect:hover .service-icon {
+      transform: rotateY(180deg);
     }
-    .testimonial-card {
-      background: #fff;
-      border: none;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    .service-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(25, 25, 24, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 15px;
+      border-radius: 0.25rem;
     }
-    .footer-bg {
-      background-color: #39225D;
-      color: #fff;
+    .hover-effect:hover .service-overlay {
+      opacity: 1;
     }
-    .footer-link {
-      color: #FFCA80;
-      text-decoration: none;
+    
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 0.5; }
     }
-    .footer-link:hover {
-      text-decoration: underline;
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
-    .navbar-light .nav-link {
-      color: #333;
-      font-weight: 500;
+    
+    /* Section Animations */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
     }
-    .navbar-light .nav-link.active {
-      color: #3b82f6;
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 60px;
+      border: 2px solid var(--accent-color);
+      border-radius: 20px;
+      z-index: 100;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+    }
+    .scroll-indicator:hover {
+      opacity: 1;
+    }
+    .scroll-indicator::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      animation: scrollAnimation 2s infinite;
+    }
+    
+    @keyframes scrollAnimation {
+      0% { transform: translate(-50%, 0); opacity: 1; }
+      100% { transform: translate(-50%, 20px); opacity: 0; }
+    }
+
+    .highlight-animate {
+      display: inline-block;
+      animation: simpleHighlight 1.5s infinite alternate;
+      color: #38bdf8; /* Sky blue */
       font-weight: bold;
+      transition: color 0.3s;
     }
+    @keyframes simpleHighlight {
+      0% {
+        color: #38bdf8; /* Sky blue */
+      }
+      100% {
+        color: #a21caf; /* Purple */
+      }
+    }
+    /* Marquee Styles */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee {
+  display: flex;
+  width: 200%;
+  animation: scroll 20s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  flex-shrink: 0;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Experience Section */
+#experience {
+  position: relative;
+  overflow: hidden;
+}
+
+#experience::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(30, 10, 60, 0.03) 0%, rgba(10, 36, 114, 0.03) 100%);
+  z-index: 0;
+}
   </style>
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center fw-bold text-primary" href="index.html">
-        <img src="assets/logo.jpeg" alt="WHIZMINDER Logo" style="height:40px; margin-right:10px;">
-        WHIZMINDER
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+  <!-- Logo -->
+  <div class="logo-container animate__animated animate__fadeInDown">
+    <img src="assets/logo3.png" alt="WHIZMINDER Logo" class="animate__animated animate__fadeIn">
+  </div>
+
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu">
+    <button class="hamburger-btn" id="hamburgerBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul class="mobile-nav-list">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+        <a href="javascript:void(0)" class="dropdown-toggle">Services</a>
+        <ul class="dropdown-menu">
+          <li><a href="iso27001.html">ISO 27001</a></li>
+          <li><a href="isaudit.html">Information System Audit</a></li>
+          <li><a href="iso9000.html">ISO 9000</a></li>
+          <li><a href="vapt.html">VAPT</a></li>
+          <li><a href="soc.html">SOC</a></li>
+          <li><a href="forensic.html">Forensic</a></li>
+          
         </ul>
-      </div>
-    </div>
-  </nav>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator"></div>
 
   <!-- Hero Section -->
-  <header class="hero-bg py-5">
-    <div class="container py-5">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-lg-6 mb-4">
-          <h1 class="display-4 fw-bold">Wisdom in Motion</h1>
-          <p class="lead">We engineer the future—cutting-edge software, intuitive design, impactful SEO, and robust cybersecurity built for global standards.</p>
-          <div class="d-flex flex-wrap gap-3 my-4">
-            <span class="badge bg-primary p-3"><i class="bi bi-laptop me-2"></i>Software</span>
-            <span class="badge bg-info text-dark p-3"><i class="bi bi-brush me-2"></i>Design</span>
-            <span class="badge bg-warning text-dark p-3"><i class="bi bi-graph-up-arrow me-2"></i>SEO</span>
-            <span class="badge bg-secondary p-3"><i class="bi bi-shield-lock me-2"></i>Cybersecurity</span>
-          </div>
-          <a href="contact.html" class="btn btn-light btn-lg fw-bold">Get Started</a>
-        </div>
-        <div class="col-lg-5 text-center">
-          <div class="bg-white rounded-4 shadow p-4">
-            <img src="assets/Adobe Express - file.png" alt="Team at Work" class="img-fluid rounded-3 mb-3" style="max-height: 120px;">
-            <div class="d-flex justify-content-center gap-3 mb-3">
-              <i class="bi bi-code-slash fs-2 text-primary"></i>
-              <i class="bi bi-kanban fs-2 text-info"></i>
-              <i class="bi bi-bar-chart-line fs-2 text-warning"></i>
-              <i class="bi bi-shield-lock fs-2 text-secondary"></i>
-            </div>
-            <div class="text-start small text-muted">
-              <div><i class="bi bi-laptop me-2"></i>Code Review: <span class="text-primary">Passed</span></div>
-              <div><i class="bi bi-brush me-2"></i>UI Mockup: <span class="text-info">Ready</span></div>
-              <div><i class="bi bi-graph-up-arrow me-2"></i>SEO: <span class="text-warning">Optimized</span></div>
-              <div><i class="bi bi-shield-lock me-2"></i>Security: <span class="text-secondary">Secured</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <header class="hero-bg py-5 position-relative overflow-hidden">
+    <!-- Video Background -->
+    <div class="video-background position-absolute top-0 start-0 w-100 h-100">
+        <video autoplay muted loop playsinline class="w-100 h-100 object-fit-cover">
+            <source src="assets/vedio/front.mp4" type="video/mp4">
+            <!-- Fallback image if video doesn't load -->
+            <img src="assets/images/tech-background-fallback.jpg" alt="Technology background" class="w-100 h-100 object-fit-cover">
+        </video>
+        <!-- Dark overlay for text readability -->
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
     </div>
-  </header>
+    
+    <!-- Content Container -->
+    <div class="container py-4 position-relative z-index-1">
+        <div class="col-lg-6 mb-4 animate__animated animate__fadeInLeft">
+            <h2 class="display-6 fw-bold text-white">
+                <div class="animated-text" style="white-space: nowrap;">Cutting-edge <span class="highlight-animate">Advisory</span></div>
+                <div class="animated-text" style="white-space: nowrap;">Next-Gen <span class="highlight-animate">Technology Solution</span></div>
+            </h2>
+            
+            <!-- Services List -->
+            <p class="lead mb-4 fs-5 text-light animate__animated animate__fadeIn animate__delay-1s">
+                ISO 27001 ISMS audit | ISO 9000 QMS Audit | Web Application Security Assessment | 
+                Mobile Application Security Testing | API Security Assessment | Digital Forensic
+            </p>
+            
+            <!-- CTA Button -->
+            <a href="contact.html" class="btn btn-light btn-lg fw-bold mt-3 animate__animated animate__pulse animate__infinite animate__slower">Get Started</a>
+        </div>
+    </div>
+</header>
+
+<style>
+    .hero-bg {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .video-background {
+        z-index: 0;
+    }
+    
+    .z-index-1 {
+        z-index: 1;
+    }
+    
+    /* Animation for the highlighted words */
+    .highlight-animate {
+        display: inline-block;
+        position: relative;
+        color: #FFCA80; /* Your accent color */
+    }
+    
+    .highlight-animate::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #FFCA80;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease;
+    }
+    
+    .highlight-animate:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .hero-bg {
+            min-height: 70vh;
+            text-align: center;
+        }
+        
+        .hero-bg .col-lg-6 {
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+</style>
 
   <!-- Services Section -->
-  <section class="py-5 bg-white">
-    <div class="container text-center">
-      <h2 class="fw-bold mb-4">Our Services</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-6 col-md-2"><i class="bi bi-laptop service-icon"></i><h6 class="mt-2">Software</h6></div>
-        <div class="col-6 col-md-2"><i class="bi bi-brush service-icon"></i><h6 class="mt-2">Design</h6></div>
-        <div class="col-6 col-md-2"><i class="bi bi-graph-up-arrow service-icon"></i><h6 class="mt-2">SEO</h6></div>
-        <div class="col-6 col-md-2"><i class="bi bi-shield-lock service-icon"></i><h6 class="mt-2">Security</h6></div>
-        <div class="col-6 col-md-2"><i class="bi bi-headset service-icon"></i><h6 class="mt-2">IT Support</h6></div>
-      </div>
+  <section class="py-5 bg-white" id="services">
+    <div class="container">
+        <h2 class="fw-bold mb-5 text-dark text-center animate__animated animate__pulse animate__infinite" style="animation-duration: 2s;">Our Services</h2>
+        
+        <!-- Horizontal scrollable container -->
+        <div class="d-flex flex-row flex-nowrap overflow-auto pb-3">
+            <!-- Service 1 -->
+            <div class="flex-shrink-0 mx-2" style="width: 240px;">
+                <a href="cybersecurity.html" class="text-decoration-none">
+                    <div class="service-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="card bg-light border border-warning border-opacity-25 rounded-3 p-3 h-100 animate__animated animate__zoomIn hover-effect">
+                            <img src="assets/isaudit.png" alt="Information System Audit" class="img-fluid mb-3 service-icon">
+                            <h6 class="text-dark mb-0">Information System Audit</h6>
+                            <div class="service-overlay">
+                                <p class="small text-white">Comprehensive audits to ensure your systems meet security standards</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="flex-shrink-0 mx-2" style="width: 240px;">
+                <a href="cybersecurity.html" class="text-decoration-none">
+                    <div class="service-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="card bg-light border border-warning border-opacity-25 rounded-3 p-3 h-100 animate__animated animate__zoomIn hover-effect">
+                            <img src="assets/iso17001.png" alt="ISO 27001:2022" class="img-fluid mb-3 service-icon">
+                            <h6 class="text-dark mb-0">ISO 27001:2022</h6>
+                            <div class="service-overlay">
+                                <p class="small text-white">Implementation and certification for information security management</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="flex-shrink-0 mx-2" style="width: 240px;">
+                <a href="cybersecurity.html" class="text-decoration-none">
+                    <div class="service-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="card bg-light border border-warning border-opacity-25 rounded-3 p-3 h-100 animate__animated animate__zoomIn hover-effect">
+                            <img src="assets/pcidss.png" alt="PCI DSS Compliance" class="img-fluid mb-3 service-icon">
+                            <h6 class="text-dark mb-0">PCI DSS Compliance</h6>
+                            <div class="service-overlay">
+                                <p class="small text-white">Secure payment systems and compliance solutions</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="flex-shrink-0 mx-2" style="width: 240px;">
+                <a href="cybersecurity.html" class="text-decoration-none">
+                    <div class="service-card" data-aos="flip-left" data-aos-delay="400">
+                        <div class="card bg-light border border-warning border-opacity-25 rounded-3 p-3 h-100 animate__animated animate__zoomIn hover-effect">
+                            <img src="assets/vapt.png" alt="VAPT" class="img-fluid mb-3 service-icon">
+                            <h6 class="text-dark mb-0">Vulnerability Assessment & Penetration Testing</h6>
+                            <div class="service-overlay">
+                                <p class="small text-white">Identify and fix security vulnerabilities in your systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="flex-shrink-0 mx-2" style="width: 240px;">
+                <a href="cybersecurity.html" class="text-decoration-none">
+                    <div class="service-card" data-aos="flip-left" data-aos-delay="500">
+                        <div class="card bg-light border border-warning border-opacity-25 rounded-3 p-3 h-100 animate__animated animate__zoomIn hover-effect">
+                            <img src="assets/soc.png" alt="Security Operation Center" class="img-fluid mb-3 service-icon">
+                            <h6 class="text-dark mb-0">Security Operation Center</h6>
+                            <div class="service-overlay">
+                                <p class="small text-white">24/7 monitoring and threat detection services</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
   </section>
 
   <!-- Why Choose Us -->
-  <section class="py-5 bg-light">
+  <section class="py-5" style="background: linear-gradient(145deg, var(--primary-color), var(--secondary-color)); color: var(--text-color);" id="why-us">
     <div class="container text-center">
-      <h2 class="fw-bold mb-4">Why Choose Us</h2>
+      <h2 class="fw-bold mb-5 animate__animated">Why Choose Us</h2>
       <div class="row g-4 justify-content-center">
         <div class="col-md-4">
-          <div class="p-4 border rounded-3 h-100">
-            <i class="bi bi-lightning-charge why-icon mb-3"></i>
-            <h5>Fast Delivery</h5>
+          <div class="why-card p-4 rounded-4 h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+            <i class="bi bi-lightning-charge-fill display-5 text-warning mb-3"></i>
+            <h5 class="fw-semibold">Fast Delivery</h5>
             <p>We work fast, communicate clearly, and meet every deadline with precision.</p>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="p-4 border rounded-3 h-100">
-            <i class="bi bi-people why-icon mb-3"></i>
-            <h5>Experienced Team</h5>
+          <div class="why-card p-4 rounded-4 h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+            <i class="bi bi-people-fill display-5 text-info mb-3"></i>
+            <h5 class="fw-semibold">Experienced Team</h5>
             <p>Certified, international experts with a proven global portfolio.</p>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="p-4 border rounded-3 h-100">
-            <i class="bi bi-emoji-smile why-icon mb-3"></i>
-            <h5>Client-Centric Approach</h5>
+          <div class="why-card p-4 rounded-4 h-100 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+            <i class="bi bi-emoji-smile-fill display-5 text-success mb-3"></i>
+            <h5 class="fw-semibold">Client-Centric</h5>
             <p>We align with your goals, ensuring satisfaction and measurable success.</p>
           </div>
         </div>
@@ -169,13 +771,13 @@
   </section>
 
   <!-- Testimonials -->
-  <section class="py-5">
+  <section class="py-5" id="testimonials">
     <div class="container text-center">
-      <h2 class="fw-bold mb-4">Client Testimonials</h2>
+      <h2 class="fw-bold mb-4 animate__animated">Client Testimonials</h2>
       <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="card testimonial-card mx-auto p-4" style="max-width: 600px;">
+            <div class="card testimonial-card mx-auto p-4 animate__animated animate__fadeIn" style="max-width: 600px;">
               <blockquote class="blockquote mb-3">
                 <p>"WHIZMINDER transformed our digital presence. Secure, fast, and beautifully designed!"</p>
               </blockquote>
@@ -183,7 +785,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <div class="card testimonial-card mx-auto p-4" style="max-width: 600px;">
+            <div class="card testimonial-card mx-auto p-4 animate__animated animate__fadeIn" style="max-width: 600px;">
               <blockquote class="blockquote mb-3">
                 <p>"Exceptional delivery and professional team. Our go-to for all tech needs."</p>
               </blockquote>
@@ -201,104 +803,172 @@
     </div>
   </section>
 
-  <!-- FAQs -->
-  <section class="py-5 bg-light">
-    <div class="container">
-      <h2 class="fw-bold text-center mb-4">Frequently Asked Questions</h2>
-      <div class="accordion" id="faqAccordion">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="faq1">
-            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true">
-              What services do you offer?
-            </button>
-          </h2>
-          <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Software, UI/UX, SEO, cybersecurity, IT support, training & consulting.
-            </div>
+  <!-- Our Experience Section -->
+<section class="py-5 bg-light" id="experience">
+  <div class="container">
+    <h2 class="fw-bold mb-5 text-center text-dark">Our Experience</h2>
+    <p class="text-center text-dark mb-5">Trusted by leading organizations across industries</p>
+    
+    <!-- Logo Marquee -->
+    <div class="d-flex align-items-center overflow-hidden">
+      <!-- First Marquee (left to right) -->
+      <div class="marquee-wrapper">
+        <div class="marquee">
+          <div class="marquee-content">
+            <img src="assets/TechCompany/tech1.png" alt="Company 1" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/tech2.png" alt="Company 2" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/tech3.png" alt="Company 3" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/tech4.png" alt="Company 4" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/mtb.png" alt="Company 5" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/dbbl.png" alt="Company 6" class="img-fluid mx-4" style="height: 100px;">
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="faq2">
-            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse2">
-              How fast is your delivery?
-            </button>
-          </h2>
-          <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Depending on project scope, we often deliver in days—not weeks.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="faq3">
-            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapse3">
-              How do I request a quote?
-            </button>
-          </h2>
-          <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Simply contact us via the form or click "Get a Free Quote" above.
-            </div>
+          <!-- Duplicate for seamless looping -->
+          <div class="marquee-content" aria-hidden="true">
+            <img src="assets/TechCompany/tech1.png" alt="Company 1" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/tech2.png" alt="Company 2" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/tech3.png" alt="Company 3" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/tech4.png" alt="Company 4" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/mtb.png" alt="Company 5" class="img-fluid mx-4" style="height: 100px;">
+            <img src="assets/TechCompany/dbbl.png" alt="Company 6" class="img-fluid mx-4" style="height: 100px;">
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Footer -->
-  <!-- Updated Footer -->
-  <footer class="footer-bg py-5 text-light" style="background-color: #1A0F33; position: relative;">
+  <footer class="footer-bg py-4 text-light">
     <div class="container">
       <div class="row">
-        <!-- Head Office -->
-        <div class="col-md-4 mb-4">
-          <h5>Head Office</h5>
-          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i>Head office: Flat# B7, House#287, Road# 8/A,<br> Dhanmondi, Dhaka-1209, Bangladesh</p>
-          <p class="mb-1"><i class="bi bi-envelope me-2"></i><a href="mailto:info@whizminder.com" class="text-info text-decoration-none">info@whizminder.com</a></p>
-          <p><i class="bi bi-telephone me-2"></i><a href="tel:+8801718520275" class="text-info text-decoration-none">+880 1718-520275</a></p>
+        <div class="col-md-4 mb-3">
+          <h5 class="mb-2">Head Office</h5>
+          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i>Flat# B7, House#287, Road# 8/A,<br>Dhanmondi, Dhaka-1209</p>
+          <p class="mb-1"><i class="bi bi-envelope me-2"></i>
+            <a href="mailto:info@whizminder.com" class="text-info text-decoration-none">info@whizminder.com</a></p>
+          <p class="mb-0"><i class="bi bi-telephone me-2"></i>
+            <a href="tel:+8801718520275" class="text-info text-decoration-none">+880 1718-520275</a></p>
         </div>
-  
-        <!-- Operational Office -->
-        <div class="col-md-4 mb-4">
-          <h5>Operational Office</h5>
-          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i>Flat: 1A, House: 7, Road 9/B, Metro Housing,<br>Boshila, Mohammadpur, Dhaka, Bangladesh</p>
-  
-          <!-- Newsletter -->
-          <h6 class="mt-4 text-info">Subscribe to our Newsletter</h6>
-          <form class="d-flex" onsubmit="return false;">
-            <input type="email" class="form-control me-2" placeholder="Your email" required>
+        <div class="col-md-4 mb-3">
+          <h5 class="mb-2">Operational Office</h5>
+          <p class="mb-1"><i class="bi bi-geo-alt me-2"></i>Flat: 1A, House: 7, Road 9/B,<br>Metro Housing, Boshila, Mohammadpur</p>
+          <h6 class="mt-3 text-info">Subscribe to our Newsletter</h6>
+          <form class="d-flex gap-2" onsubmit="return false;">
+            <input type="email" class="form-control" placeholder="Your email" required>
             <button class="btn btn-info" type="submit">Subscribe</button>
           </form>
         </div>
-  
-        <!-- Social Media -->
-        <div class="col-md-4 mb-4 text-md-end text-center">
-          <h5>Follow Us</h5>
-          <a href="#" class="text-info fs-5 me-3"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-info fs-5 me-3"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="text-info fs-5 me-3"><i class="bi bi-linkedin"></i></a>
-          <a href="#" class="text-info fs-5"><i class="bi bi-instagram"></i></a>
-  
-          <!-- Back to Top -->
-          <div class="mt-4">
-            <a href="#" onclick="scrollToTop()" class="btn btn-outline-light btn-sm">
-              <i class="bi bi-arrow-up-circle me-1"></i>Back to Top
-            </a>
+        <div class="col-md-4 mb-3 text-md-end text-center">
+          <h5 class="mb-2">Follow Us</h5>
+          <div class="mb-3">
+            <a href="#" class="text-info fs-5 me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-info fs-5 me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-info fs-5 me-3"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-info fs-5"><i class="bi bi-instagram"></i></a>
           </div>
+          <a href="#" onclick="scrollToTop()" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-arrow-up-circle me-1"></i>Back to Top
+          </a>
         </div>
       </div>
-  
-      <!-- Bottom Bar -->
-      <div class="text-center mt-4 pt-3 border-top border-secondary">
-        <small>© 2024 WHIZMINDER. All rights reserved. | Wisdom in Motion</small>
+      <div class="text-center mt-3 pt-2 border-top border-secondary">
+        <small> Wisdom in Motion <br> © 2024 WHIZMINDER. All rights reserved.</small>
       </div>
     </div>
   </footer>
-  
-
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init();
+      // Hamburger Menu Toggle
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('overlay');
+      hamburgerBtn.addEventListener('click', function() {
+        this.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'visible' : '';
+      });
+      overlay.addEventListener('click', function() {
+        hamburgerBtn.classList.remove('active');
+        mobileNav.classList.remove('active');
+        this.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      // Dropdown functionality for mobile nav
+      document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+          console.log('Dropdown toggle clicked!'); // Debug message
+          e.preventDefault();
+          this.classList.toggle('active');
+          const dropdown = this.nextElementSibling;
+          dropdown.classList.toggle('active');
+          // Close other open dropdowns
+          document.querySelectorAll('.dropdown-menu').forEach(menu => {
+            if (menu !== dropdown && menu.classList.contains('active')) {
+              menu.classList.remove('active');
+              menu.previousElementSibling.classList.remove('active');
+            }
+          });
+        });
+      });
+      // Scroll to top function
+      window.scrollToTop = function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      // Scroll animation for sections
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+      // Hide scroll indicator when at top
+      window.addEventListener('scroll', function() {
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (window.scrollY > 100) {
+          scrollIndicator.style.opacity = '0.7';
+        } else {
+          scrollIndicator.style.opacity = '0';
+        }
+      });
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (mobileNav.classList.contains('active')) {
+            hamburgerBtn.classList.remove('active');
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
