@@ -507,7 +507,7 @@
 <body>
   <!-- Logo -->
   <div class="logo-container animate__animated animate__fadeInDown">
-    <img src="assets/logo.jpeg" alt="WHIZMINDER Logo" class="animate__animated animate__fadeIn">
+    <img src="assets/logo3.png" alt="WHIZMINDER Logo" class="animate__animated animate__fadeIn">
   </div>
 
   <!-- Hamburger Menu -->
@@ -547,6 +547,15 @@
 
   <!-- About Hero Section -->
   <header class="about-hero py-5">
+    <div class="video-background position-absolute top-0 start-0 w-100 h-100">
+      <video autoplay muted loop playsinline class="w-100 h-100 object-fit-cover">
+          <source src="assets/vedio/front.mp4" type="video/mp4">
+          <!-- Fallback image if video doesn't load -->
+          <img src="assets/images/tech-background-fallback.jpg" alt="Technology background" class="w-100 h-100 object-fit-cover">
+      </video>
+      <!-- Dark overlay for text readability -->
+      <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+  </div>
     <div class="container py-5">
       <div class="row">
         <div class="col-lg-8 mx-auto text-center animate__animated animate__fadeIn">
